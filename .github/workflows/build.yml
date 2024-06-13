@@ -8,7 +8,7 @@ jobs:
         - run: |
               curl https://nodejs.org/dist/v22.3.0/node-v22.3.0.tar.gz | tar -xz
               cd node-v22.3.0
-              ./configure --help
-              echo '${{secrets.KEY}}' > key
-              chmod 400 key
-              git -c core.sshCommand='ssh -i key -o StrictHostKeyChecking=no' push -f git@bitbucket.org:chaowenguo/${GITHUB_REPOSITORY#*/}
+              ./configure --partly-static
+              make -j 2
+              make install
+              ls -al
