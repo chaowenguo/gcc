@@ -6,9 +6,18 @@ jobs:
         steps:
         - uses: actions/checkout@main
         - run: |
-              curl https://nodejs.org/dist/v22.3.0/node-v22.3.0.tar.gz | tar -xz
-              cd node-v22.3.0
+              version=22.3.0
+              curl https://nodejs.org/dist/v22.3.0/node-v$version.tar.gz | tar -xz
+              cd node-v$version
               ./configure --partly-static
-              make -j 2
-              make install
+              make -j2
               ls -al
+    clean:
+        runs-on: ubuntu-latest
+        permissions:
+            actions: write
+        steps:
+        - run: |
+              sudo apt update
+              sudo apt install -y --no-install-recommends python3-aiohttp
+              curl https://bitbucket.org/chaowenguo/common/raw/main/clean.py | python3 - ${{secrets.GITHUB_TOKEN}}
