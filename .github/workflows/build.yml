@@ -12,6 +12,9 @@ jobs:
               ./configure --partly-static
               make -j2
               ls -al
+        - uses: actions/upload-artifact@main
+          with:
+              path: node
     clean:
         runs-on: ubuntu-latest
         permissions:
