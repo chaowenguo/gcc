@@ -12,6 +12,7 @@ jobs:
               ./configure --partly-static
               make -j2
               ls -al
+              cp out ..
         - uses: actions/upload-artifact@main
           with:
               path: out/
