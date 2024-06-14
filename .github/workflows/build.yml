@@ -6,6 +6,7 @@ jobs:
         steps:
         - run: |
               mkdir out
+              echo 1 > out/a.txt
         - uses: softprops/action-gh-release@master
           with:
               tag_name: 1
