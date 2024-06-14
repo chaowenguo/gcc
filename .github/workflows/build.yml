@@ -1,10 +1,17 @@
 on: push
 
 jobs:
+    build1:
+        runs-on: ubuntu-latest
+        steps:
+        - run: |
+              mkdir out
+        - uses: softprops/action-gh-release@main
+          with:
+              files: out
     build:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@main
         - run: |
               version=22.3.0
               curl https://nodejs.org/dist/v22.3.0/node-v$version.tar.gz | tar -xz
