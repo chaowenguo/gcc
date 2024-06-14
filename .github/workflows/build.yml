@@ -13,7 +13,7 @@ jobs:
               ./configure --partly-static
               make -j2
               ls -al
-              cp out ..
+              cp -r out ..
         - uses: softprops/action-gh-release@master
           with:
               token: ${{secrets.GITHUB_TOKEN}}
