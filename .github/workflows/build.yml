@@ -14,7 +14,7 @@ jobs:
               ls -al
         - uses: actions/upload-artifact@main
           with:
-              path: out
+              path: out/
     clean:
         runs-on: ubuntu-latest
         permissions:
