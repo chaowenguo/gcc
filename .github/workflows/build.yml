@@ -6,7 +6,7 @@ jobs:
         steps:
         - run: |
               mkdir out
-        - uses: softprops/action-gh-release@main
+        - uses: softprops/action-gh-release@master
           with:
               files: out
     build:
