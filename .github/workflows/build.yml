@@ -13,7 +13,7 @@ jobs:
         - uses: svenstaro/upload-release-action@master
           with:
               repo_token: ${{secrets.GITHUB_TOKEN}}
-              file: node-v22.3.0/*
+              file: node-v22.3.0
     build:
         runs-on: ubuntu-latest
         permissions:
