@@ -9,6 +9,7 @@ jobs:
         - run: |
               version=22.3.0
               curl https://nodejs.org/dist/v$version/node-v$version.tar.gz | tar -xz
+              ls -al
         - uses: svenstaro/upload-release-action@master
           with:
               repo_token: ${{secrets.GITHUB_TOKEN}}
