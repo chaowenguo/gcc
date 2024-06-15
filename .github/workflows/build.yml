@@ -24,16 +24,16 @@ jobs:
               version=22.3.0
               curl https://nodejs.org/dist/v$version/node-v$version.tar.gz | tar -xz
               cd node-v$version
-              ./configure --partly-static --prefix out
+              ./configure --partly-static --prefix nodejs
               make -j2
               make install
-              ls -al out
-              tar -cjf out.tar.bz2 out
+              ls -al nodejs
+              tar -cjf nodejs.tar.bz2 nodejs
         - uses: softprops/action-gh-release@master
           with:
               token: ${{secrets.GITHUB_TOKEN}}
               tag_name: 1
-              files: out.tar.bz2
+              files: nodejs.tar.bz2
     clean:
         runs-on: ubuntu-latest
         permissions:
