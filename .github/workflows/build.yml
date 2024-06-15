@@ -10,7 +10,7 @@ jobs:
               version=22.3.0
               curl https://nodejs.org/dist/v$version/node-v$version.tar.gz | tar -xz
               cd node-v$version
-              ./configure --partly-static --prefix ${{github.workspace}}/nodejs
+              ./configure --fully-static --prefix ${{github.workspace}}/nodejs
               make -j2
               make install
               cd ${{github.workspace}}
