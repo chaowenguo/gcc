@@ -14,7 +14,6 @@ jobs:
               make -j2
               make install
               cd ${{github.workspace}}
-              ls -al nodejs
               tar -cjvf nodejs.tar.bz2 nodejs
         - uses: softprops/action-gh-release@master
           with:
