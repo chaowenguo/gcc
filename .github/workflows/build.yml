@@ -9,7 +9,7 @@ jobs:
         - run: |
               version=22.3.0
               curl https://nodejs.org/dist/v$version/node-v$version.tar.gz | tar -xz
-              tar -cjf out.tar.bz2 -C node-v22.3.0 *
+              tar -cjf out.tar.bz2 node-v22.3.0
         - uses: softprops/action-gh-release@master
           with:
               token: ${{secrets.GITHUB_TOKEN}}
