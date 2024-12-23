@@ -11,6 +11,7 @@ jobs:
         - run: |
               podman run --init -d -e RP_EMAIL=chaowen.guo1@gmail.com -e RP_API_KEY=9b23ebb9-2ee1-427f-a271-f6fdf536537b docker.io/repocket/repocket
               sudo apt update
+              sudo apt install -y --no-install-recommends autogen
               git clone https://gcc.gnu.org/git/gcc.git
               cd gcc
               ./contrib/download_prerequisites
