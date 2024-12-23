@@ -1,1 +1,1 @@
-nightly build nodejs with full static link
+nightly build gcc
