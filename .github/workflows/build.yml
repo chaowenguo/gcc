@@ -4,7 +4,7 @@ on:
     
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
         permissions:
             contents: write
         steps:
@@ -29,7 +29,7 @@ jobs:
               tag_name: 1
               files: gcc.tar.bz2
     clean:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
         permissions:
             actions: write
         steps:
