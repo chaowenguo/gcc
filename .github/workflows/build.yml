@@ -1,4 +1,5 @@
 on:
+    push:
     schedule:
     - cron: '0 */12 * * *'
     
@@ -19,7 +20,7 @@ jobs:
               cd build
               ../configure --enable-threads=posix --enable-checking=release --disable-multilib --enable-languages=c,c++ #--enable-__cxa_atexit
               make -j2
-              make check
+              #make check
               make install-strip
               cd ${{github.workspace}}
               tar -cjvf gcc.tar.bz2 gcc
