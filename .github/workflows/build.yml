@@ -20,7 +20,7 @@ jobs:
               ../configure --enable-threads=posix --enable-checking=release --disable-multilib --enable-languages=c,c++ #--enable-__cxa_atexit
               make -j2
               #make check
-              make install-strip
+              sudo make install-strip
               cd ${{github.workspace}}
               tar -cjvf gcc.tar.bz2 gcc
         - uses: softprops/action-gh-release@master
