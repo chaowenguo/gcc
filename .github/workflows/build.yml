@@ -18,7 +18,7 @@ jobs:
               mkdir build
               cd build
               ../configure --enable-threads=posix --enable-checking=release --disable-multilib --enable-languages=c,c++ #--enable-__cxa_atexit
-              make -j2
+              make #-j2
               #make check
               sudo make install-strip
               cd ${{github.workspace}}
