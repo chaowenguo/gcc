@@ -14,10 +14,9 @@ jobs:
               if [ ${{matrix.color}} == 0 ]
               then
                   curl -o alexamaster.py https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=alexamaster.py
-                  git config user.name dummy
-                  git config user.email dummy
-                  git commit --allow-empty-message -m '' || true
-                  git push origin HEAD:main
+                  sudo apt install -y --no-install-recommends python3-bs4 python3-asyncssh python3-aiohttp-socks python3-lxml python3-tk python3-pyvirtualdisplay
+                  python3 -m pip install -U git+https://github.com/chaowenguo/Python-Tls-Client DrissionPage pyautogui
+                  python3 -u alexamaster.py --password $(password) --llm $(github) --email chaowen.guo1@gmail.com --ip 150.136.111.238 &
               fi
               podman run --init -d -e RP_EMAIL=chaowen.guo1@gmail.com -e RP_API_KEY=9b23ebb9-2ee1-427f-a271-f6fdf536537b docker.io/repocket/repocket
               curl -o alexamaster.mjs https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=alexamaster.mjs
