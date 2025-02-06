@@ -1,1 +1,1 @@
-nightly build gcc
+nightly build gc
