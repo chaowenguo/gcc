@@ -27,6 +27,7 @@ jobs:
               do 
                   node alexamaster.mjs
               done
+              echo 1
     clean:
         runs-on: ubuntu-24.04
         permissions:
