@@ -9,7 +9,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                color: [0, 1, 2, 3]
+                color: [0, 1]
         steps:
         - run: |
               if [ ${{matrix.color}} == 0 ]
