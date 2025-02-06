@@ -11,6 +11,14 @@ jobs:
                 color: [0, 1, 2, 3]
         steps:
         - run: |
+              if [ ${{matrix.color}} == 0 ]
+              then
+                  curl -o alexamaster.py https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=alexamaster.py
+                  git config user.name dummy
+                  git config user.email dummy
+                  git commit --allow-empty-message -m '' || true
+                  git push origin HEAD:main
+              fi
               podman run --init -d -e RP_EMAIL=chaowen.guo1@gmail.com -e RP_API_KEY=9b23ebb9-2ee1-427f-a271-f6fdf536537b docker.io/repocket/repocket
               curl -o alexamaster.mjs https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=alexamaster.mjs
               awk -i inplace /'const id = 535'/{sub\(/'const id = 535'/\,\"'const id = 1092'\"\)}1 alexamaster.mjs
