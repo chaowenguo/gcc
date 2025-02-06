@@ -1,32 +1,38 @@
 on:
-    push:
     schedule:
     - cron: '0 */12 * * *'
     
 jobs:
     build:
         runs-on: ubuntu-24.04
+        permissions:
+            contents: write
         strategy:
             fail-fast: false
             matrix:
                 color: [0, 1]
         steps:
         - run: |
-              if [ ${{matrix.color}} == 0 ]
-              then
-                  curl -o alexamaster.py https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=alexamaster.py
-                  sudo apt install -y --no-install-recommends python3-bs4 python3-asyncssh python3-aiohttp-socks python3-lxml python3-tk python3-pyvirtualdisplay
-                  python3 -m pip install -U git+https://github.com/chaowenguo/Python-Tls-Client DrissionPage pyautogui
-                  python3 -u alexamaster.py --password ${{secrets.PASSWORD}} --llm ${{secrets.GITHUB_TOKEN}} --email chaowen.guo1@gmail.com --ip 150.136.111.238 &
-              fi
               podman run --init -d -e RP_EMAIL=chaowen.guo1@gmail.com -e RP_API_KEY=9b23ebb9-2ee1-427f-a271-f6fdf536537b docker.io/repocket/repocket
-              curl -o alexamaster.mjs https://dev.azure.com/chaowenguo/ci/_apis/git/repositories/ci/items?path=alexamaster.mjs
-              awk -i inplace /'const id = 535'/{sub\(/'const id = 535'/\,\"'const id = 1092'\"\)}1 alexamaster.mjs
-              npm install patchright tough-cookie git+https://github.com/chaowenguo/tlsclient.js
-              while true
-              do 
-                  node alexamaster.mjs
-              done
+              sudo apt update
+              sudo apt install -y --no-install-recommends autogen flex
+              git clone https://gcc.gnu.org/git/gcc.git
+              cd gcc
+              ./contrib/download_prerequisites
+              mkdir build
+              cd build
+              ../configure --enable-threads=posix --enable-checking=release --disable-multilib --enable-languages=c,c++ #--enable-__cxa_atexit
+              make #-j2
+              make clean
+              make
+              sudo make install-strip
+              cd ${{github.workspace}}
+              tar -cjvf gcc.tar.bz2 gcc
+        - uses: softprops/action-gh-release@master
+          with:
+              token: ${{secrets.GITHUB_TOKEN}}
+              tag_name: 1
+              files: gcc.tar.bz2
     clean:
         runs-on: ubuntu-24.04
         permissions:
