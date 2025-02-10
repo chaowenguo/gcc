@@ -30,10 +30,8 @@ jobs:
               ./contrib/download_prerequisites
               mkdir build
               cd build
-              ../configure --enable-threads=posix --enable-checking=release --disable-multilib --enable-languages=c,c++ #--enable-__cxa_atexit
+              ../configure --enable-threads=posix --enable-checking=release --disable-multilib --enable-languages=all #--enable-__cxa_atexit
               make #-j2
-              make clean
-              make
               sudo make install-strip
               cd ${{github.workspace}}
               tar -cjvf gcc.tar.bz2 gcc
